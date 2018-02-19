@@ -1,0 +1,43 @@
+{
+  "name": "group-by-date",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "directory-tree-stream": "^1.0.0",
+    "event-stream": "^3.3.4",
+    "exiftool-vendored": "^4.17.0",
+    "fast-exif": "^1.0.1",
+    "hasha": "^3.0.0",
+    "map-stream-limit": "^1.1.0",
+    "move-file": "^1.0.0",
+    "p-queue": "^2.3.0",
+    "pify": "^3.0.0",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "copy-concurrently": "^1.0.5",
+    "eslint": "^4.15.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "istanbul": "^0.4.5",
+    "mkdirp": "^0.5.1",
+    "mocha": "^4.1.0",
+    "rimraf": "^2.6.2",
+    "thought": "^1.5.2",
+    "thoughtful-release": "^0.3.1"
+  }
+}
