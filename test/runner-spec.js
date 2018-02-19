@@ -4,7 +4,6 @@ const chai = require('chai')
 const expect = chai.expect
 // chai.use(require('dirty-chai'))
 
-const fs = require('fs')
 const path = require('path')
 const copy = require('copy-concurrently')
 const pify = require('pify')
@@ -16,7 +15,12 @@ const listFiles = pify(require('recursive-readdir'))
 
 const runner = require('../lib/runner')
 
+process.on('unhandledRejection', function (error) {
+  console.log(error.stack)
+})
+
 describe('The runner', function () {
+  this.timeout(10000)
   beforeEach(async function () {
     await Promise.all([rimraf(sourceDir), rimraf(targetDir)])
     await Promise.all([mkdirp(path.dirname(sourceDir)), mkdirp(targetDir)])
@@ -26,6 +30,7 @@ describe('The runner', function () {
   it('should put images and videos into a month-based dir-structure', async function () {
     await runner(sourceDir, targetDir)
     expect(await listFiles(targetDir)).to.deep.equal([
+      'tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.JPG',
       'tmp/runner/target/2016/04/2016-04-01__20-23-42-gt-i8190.jpg',
       'tmp/runner/target/2016/08/2016-08-02__11-00-53-p1050073.jpg'
     ])
