@@ -34,8 +34,10 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "istanbul": "^0.4.5",
+    "listdirs": "^3.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^4.1.0",
+    "recursive-readdir": "^2.2.1",
     "rimraf": "^2.6.2",
     "thought": "^1.5.2",
     "thoughtful-release": "^0.3.1"
