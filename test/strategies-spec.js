@@ -3,6 +3,7 @@
 const fs = require('fs')
 const chai = require('chai')
 const expect = chai.expect
+const assert = chai.assert
 // chai.use(require('dirty-chai'))
 
 const renamer = require('../lib/rename-strategy')
@@ -46,6 +47,15 @@ describe('The rename strategies', function () {
   it('should rename avi-videos based on their riff  tag', async function () {
     expect(await renamer(file('test/fixtures/p9080175.avi')))
       .to.equal('2008/09/2008-09-08__04-14-53-p9080175.avi')
+  })
+
+  it('should not rename files that still contain the year in the remainder', async function () {
+    try {
+      await renamer(file('test/fixtures/p2008-invalid.avi'))
+      assert.fail('Must throw exception')
+    } catch (e) {
+      expect(e.message).to.equal('test/fixtures/p2008-invalid.avi contains year 2008 in remainder p2008-invalid. Pattern missing?')
+    }
   })
 
 })
