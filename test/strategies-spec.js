@@ -49,6 +49,11 @@ describe('The rename strategies', function () {
       .to.equal('2008/09/2008-09-08__04-14-53-p9080175.avi')
   })
 
+  it('should rename kita photgraphers-images', async function () {
+    expect(await renamer(file('test/fixtures/0088_some_name_20161007-JQ3E6311.jpg')))
+      .to.equal('2016/10/2016-10-07__15-15-00-0088-some_name-jq3e6311.jpg')
+  })
+
   it('should not rename files that still contain the year in the remainder', async function () {
     try {
       await renamer(file('test/fixtures/p2008-invalid.avi'))
