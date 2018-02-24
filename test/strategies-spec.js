@@ -29,6 +29,11 @@ describe('The rename strategies', function () {
       .to.equal('2015/08/2015-08-19__11-39-04-003.jpg')
   })
 
+  it('should rename images like yyyy_mm_dd_abc.jpg', async function () {
+    expect(await renamer(file('test/fixtures/2015_08_19_198.JPG')))
+      .to.equal('2015/08/2015-08-19__11-39-04-198.jpg')
+  })
+
   it('should rename videos like VID_yyyymmdd_hhmmss.mp4', async function () {
     expect(await renamer(file('test/fixtures/20150819 003.JPG')))
       .to.equal('2015/08/2015-08-19__11-39-04-003.jpg')

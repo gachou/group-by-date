@@ -41,6 +41,7 @@ describe('The runner', function () {
       'tmp/runner/target/2008/09/2008-09-08__03-24-35-p9080161.jpg',
       'tmp/runner/target/2008/09/2008-09-08__04-14-53-p9080175.avi',
       'tmp/runner/target/2015/08/2015-08-19__11-39-04-003.jpg',
+      'tmp/runner/target/2015/08/2015-08-19__11-39-04-198.jpg',
       'tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.jpg',
       'tmp/runner/target/2015/08/2015-08-19__11-39-04-p8020152.jpg',
       'tmp/runner/target/2016/04/2016-04-01__20-23-43-gt-i8190.jpg',
