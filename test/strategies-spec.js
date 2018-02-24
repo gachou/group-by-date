@@ -16,7 +16,7 @@ describe('The rename strategies', function () {
 
   it('should rename images like IMG_yyyymmdd_hhmmyy.jpg', async function () {
     expect(await renamer(file('test/fixtures/IMG_20160401_202342.jpg')))
-      .to.equal('2016/04/2016-04-01__20-23-42-gt-i8190.jpg')
+      .to.equal('2016/04/2016-04-01__20-23-43-gt-i8190.jpg')
   })
 
   it('should rename images like yyyy-mm-dd_abc.jpg', async function () {
@@ -59,10 +59,15 @@ describe('The rename strategies', function () {
       await renamer(file('test/fixtures/p2008-invalid.avi'))
       assert.fail('Must throw exception')
     } catch (e) {
-      expect(e.message).to.equal('test/fixtures/p2008-invalid.avi contains year 2008 in remainder p2008-invalid. Pattern missing?')
+      expect(e.message).to.equal('test/fixtures/p2008-invalid.avi contains year 2008 in remainder p2008-invalid.\n' +
+        '         Should there be a file-name-pattern? Extracted date: {"year":"2008","month":"09","day":"08","hour":"04","minute":"14","second":"53"}')
     }
   })
 
+  it('should rename p8020152.JPG even if 2015 is contained in the remainder', async function () {
+    expect(await renamer(file('test/fixtures/p8020152.JPG')))
+      .to.equal('2015/08/2015-08-19__11-39-04-p8020152.jpg')
+  })
 })
 
 /**

@@ -33,7 +33,7 @@ describe('The runner', function () {
     )
   })
 
-  it.only('should put images and videos into a month-based dir-structure', async function () {
+  it('should put images and videos into a month-based dir-structure', async function () {
     await runner(sourceDir, targetDir)
     let files = await listFiles(targetDir)
     files.sort()
@@ -42,7 +42,8 @@ describe('The runner', function () {
       'tmp/runner/target/2008/09/2008-09-08__04-14-53-p9080175.avi',
       'tmp/runner/target/2015/08/2015-08-19__11-39-04-003.jpg',
       'tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.jpg',
-      'tmp/runner/target/2016/04/2016-04-01__20-23-42-gt-i8190.jpg',
+      'tmp/runner/target/2015/08/2015-08-19__11-39-04-p8020152.jpg',
+      'tmp/runner/target/2016/04/2016-04-01__20-23-43-gt-i8190.jpg',
       'tmp/runner/target/2016/08/2016-08-02__11-00-53-p1050073.jpg',
       'tmp/runner/target/2016/10/2016-10-07__17-15-15-0088-some_name-jq3e6311.jpg',
       'tmp/runner/target/2017/07/2017-07-27__12-28-35-some-video.mp4',
@@ -50,4 +51,3 @@ describe('The runner', function () {
     ])
   })
 })
-

@@ -8,7 +8,9 @@
   },
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "build": "mkdir -p target && nexe lib/main.js -o target/group-by-date",
+    "run": "bin/group-by-date.js /media/shares/fotos-und-videos/alles/ /media/shares/fotos-und-videos/bydate/"
   },
   "author": "",
   "license": "ISC",
@@ -37,6 +39,7 @@
     "listdirs": "^3.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^4.1.0",
+    "nexe": "^2.0.0-rc.26",
     "recursive-readdir": "^2.2.1",
     "rimraf": "^2.6.2",
     "thought": "^1.5.2",
