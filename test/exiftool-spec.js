@@ -4,7 +4,6 @@ const chai = require('chai')
 const expect = chai.expect
 // chai.use(require('dirty-chai'))
 
-const fs = require('fs')
 const path = require('path')
 const copy = require('copy-concurrently')
 const pify = require('pify')
@@ -83,13 +82,31 @@ describe('The exiftool', function () {
     let file = path.join(tmpDir, 'IMG_20160401_202342.jpg')
     await exiftool.repair(file)
     await exiftool.save(file, {
-      'EXIF': {
-        'DateTimeOriginal': '2015-01-01T00:00:30+0100'
-      }
+      'EXIF:DateTimeOriginal': '2015-01-01T00:00:30+0100'
     })
     expect(await exiftool.load(file, {tags: ['EXIF:DateTimeOriginal']})).to.deep.equal({
       'EXIF:DateTimeOriginal': '2015-01-01T00:00:30+0100',
       'SourceFile': 'tmp/exiftool/IMG_20160401_202342.jpg'
     })
   })
+
+  it('it should use cached results if possible, but reset the cache if a file was saved', async function () {
+    this.timeout(10000) // strict timeout that will be failed without cache
+    let file = path.join(tmpDir, 'IMG_20160401_202342.jpg')
+    for (let i = 0; i < 100; i++) {
+      let tags = await exiftool.load(file)
+      expect(tags['EXIF:DateTimeOriginal']).to.equal('2016-04-01T20:23:43+0200')
+    }
+
+    // Saving should invalidate the cache immediately
+    await exiftool.repair(file)
+    await exiftool.save(file, {'EXIF:DateTimeOriginal': '2015-01-01T00:00:30+0100'})
+
+    for (let i = 0; i < 100; i++) {
+      let tags = await exiftool.load(file)
+      expect(tags['EXIF:DateTimeOriginal']).to.equal('2015-01-01T00:00:30+0100')
+    }
+
+  })
+
 })

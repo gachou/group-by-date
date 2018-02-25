@@ -21,6 +21,7 @@
     "fast-exif": "^1.0.1",
     "hasha": "^3.0.0",
     "map-stream-limit": "^1.1.0",
+    "mem": "^3.0.0",
     "move-file": "^1.0.0",
     "p-queue": "^2.3.0",
     "pify": "^3.0.0",
