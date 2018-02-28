@@ -106,7 +106,5 @@ describe('The exiftool', function () {
       let tags = await exiftool.load(file)
       expect(tags['EXIF:DateTimeOriginal']).to.equal('2015-01-01T00:00:30+0100')
     }
-
   })
-
 })
