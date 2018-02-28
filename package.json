@@ -8,7 +8,8 @@
   },
   "private": true,
   "scripts": {
-    "test": "mocha",
+    "test": "npm run lint && mocha",
+    "lint": "eslint --fix .",
     "build": "mkdir -p target && nexe lib/main.js -o target/group-by-date",
     "run": "bin/group-by-date.js /media/shares/fotos-und-videos/alles/ /media/shares/fotos-und-videos/bydate/"
   },
@@ -20,11 +21,14 @@
     "exiftool-vendored": "^4.17.0",
     "fast-exif": "^1.0.1",
     "hasha": "^3.0.0",
+    "just-diff": "^2.1.1",
+    "looks-same": "^3.3.0",
     "map-stream-limit": "^1.1.0",
     "mem": "^3.0.0",
     "move-file": "^1.0.0",
     "p-queue": "^2.3.0",
     "pify": "^3.0.0",
+    "pixel-compare": "^3.1.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
