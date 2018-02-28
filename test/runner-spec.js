@@ -22,7 +22,7 @@ process.on('unhandledRejection', function (error) {
 })
 
 describe('The runner', function () {
-  this.timeout(10000)
+  this.timeout(20000)
   beforeEach(async function () {
     await Promise.all([rimraf(sourceDir), rimraf(targetDir)])
     await Promise.all([mkdirp(path.dirname(sourceDir)), mkdirp(targetDir)])
@@ -46,6 +46,7 @@ describe('The runner', function () {
     let files = await listFiles(targetDir)
     files.sort()
     expect(files).to.deep.equal([
+      'tmp/runner/target/2007/10/2007-10-01__12-00-00-bild137.jpg',
       'tmp/runner/target/2008/09/2008-09-08__03-24-35-p9080161.jpg',
       'tmp/runner/target/2008/09/2008-09-08__04-14-53-p9080175.avi',
       'tmp/runner/target/2015/08/2015-08-19__11-39-04-003.jpg',
@@ -58,6 +59,24 @@ describe('The runner', function () {
       'tmp/runner/target/2017/07/2017-07-27__12-28-35-some-video.mp4',
       'tmp/runner/target/2017/07/2017-07-27__14-28-29-vid.mp4'
     ])
-    expect(targetFileChecks).to.deep.equal([])
+    expect(targetFileChecks).to.deep.equal([
+      {
+        'source': 'tmp/runner/source/2015-08-19_P1010301.JPG',
+        'target': '/home/nknappmeier/projects/gachou/group-by-date/tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.jpg',
+        'targetFileCheck': {
+          'diff': [
+            {
+              'op': 'replace',
+              'path': [
+                'File:FileAccessDate'
+              ],
+              'value': '2018-03-01T00:13:03+0100'
+            }
+          ],
+          'exists': true,
+          'samePixels': true
+        }
+      }
+    ])
   })
 })

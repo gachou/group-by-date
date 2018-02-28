@@ -16,6 +16,7 @@ describe('The rename strategies', function () {
 
   afterEach(function () {
     fs.utimesSync('test/fixtures/sorted/2007/10/01/Bild137.jpg', bild137Stats.atime, bild137Stats.mtime)
+    require('../lib/exiftool').clearCache()
   })
 
   it('should rename images like yyyy-mm-dd__hh-mm-yy-...', async function () {
@@ -91,6 +92,7 @@ describe('The rename strategies', function () {
 
   it('should rename 2007/10/01/Bild137.JPG to an exact time (if the file date is matching the path)', async function () {
     fs.utimesSync('test/fixtures/sorted/2007/10/01/Bild137.jpg', new Date('2007-10-01T04:00:00'), new Date('2007-10-01T08:00:00'))
+    require('../lib/exiftool').clearCache()
     expect(await renamer(file('test/fixtures/sorted/2007/10/01/Bild137.jpg')))
       .to.equal('2007/10/2007-10-01__08-00-00-bild137.jpg')
   })
