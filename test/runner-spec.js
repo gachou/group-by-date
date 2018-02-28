@@ -14,9 +14,10 @@ const targetDir = 'tmp/runner/target'
 const listFiles = pify(require('recursive-readdir'))
 const fs = require('fs')
 
-const runner = require('../lib/runner')
+const {Runner} = require('../lib/runner')
 
 process.on('unhandledRejection', function (error) {
+// eslint-disable-next-line no-console
   console.log(error.stack)
 })
 
@@ -34,7 +35,14 @@ describe('The runner', function () {
   })
 
   it('should put images and videos into a month-based dir-structure', async function () {
-    await runner(sourceDir, targetDir)
+    const targetFileChecks = []
+    await new Runner(sourceDir, targetDir)
+      .on('targetFileCheck', (source, target, targetFileCheck) => targetFileChecks.push({
+        source,
+        target,
+        targetFileCheck
+      }))
+      .run()
     let files = await listFiles(targetDir)
     files.sort()
     expect(files).to.deep.equal([
@@ -50,5 +58,6 @@ describe('The runner', function () {
       'tmp/runner/target/2017/07/2017-07-27__12-28-35-some-video.mp4',
       'tmp/runner/target/2017/07/2017-07-27__14-28-29-vid.mp4'
     ])
+    expect(targetFileChecks).to.deep.equal([])
   })
 })
