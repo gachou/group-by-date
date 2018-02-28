@@ -9,6 +9,15 @@ const assert = chai.assert
 const renamer = require('../lib/rename-strategy')
 
 describe('The rename strategies', function () {
+  /**
+   * @type {fs.Stats}
+   */
+  let bild137Stats = fs.statSync('test/fixtures/sorted/2007/10/01/Bild137.jpg')
+
+  afterEach(function () {
+    fs.utimesSync('test/fixtures/sorted/2007/10/01/Bild137.jpg', bild137Stats.atime, bild137Stats.mtime)
+  })
+
   it('should rename images like yyyy-mm-dd__hh-mm-yy-...', async function () {
     expect(await renamer(file('test/fixtures/2016-08-02__11-00-53-p1050073.jpg')))
       .to.equal('2016/08/2016-08-02__11-00-53-p1050073.jpg')
@@ -72,6 +81,18 @@ describe('The rename strategies', function () {
   it('should rename p8020152.JPG even if 2015 is contained in the remainder', async function () {
     expect(await renamer(file('test/fixtures/p8020152.JPG')))
       .to.equal('2015/08/2015-08-19__11-39-04-p8020152.jpg')
+  })
+
+  it('should rename 2007/10/01/Bild137.JPG to an approximated time (about noon, file date does not match parent dirs)', async function () {
+    fs.utimesSync('test/fixtures/sorted/2007/10/01/Bild137.jpg', new Date('2010-05-05T17:00:00Z'), new Date('2010-05-05T17:00:00Z'))
+    expect(await renamer(file('test/fixtures/sorted/2007/10/01/Bild137.jpg')))
+      .to.equal('2007/10/2007-10-01__12-00-00-bild137.jpg')
+  })
+
+  it('should rename 2007/10/01/Bild137.JPG to an exact time (if the file date is matching the path)', async function () {
+    fs.utimesSync('test/fixtures/sorted/2007/10/01/Bild137.jpg', new Date('2007-10-01T04:00:00'), new Date('2007-10-01T08:00:00'))
+    expect(await renamer(file('test/fixtures/sorted/2007/10/01/Bild137.jpg')))
+      .to.equal('2007/10/2007-10-01__08-00-00-bild137.jpg')
   })
 })
 
