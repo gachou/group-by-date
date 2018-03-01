@@ -5,21 +5,13 @@ const expect = chai.expect
 // chai.use(require('dirty-chai'))
 
 const path = require('path')
-const copy = require('copy-concurrently')
-const pify = require('pify')
-const mkdirp = pify(require('mkdirp'))
-const rimraf = pify(require('rimraf'))
-
+const {setupTmpDir} = require('./lib/tmpDir')
 const exiftool = require('../lib/exiftool')
 
 const tmpDir = path.join('tmp', 'exiftool')
 
 describe('The exiftool', function () {
-  beforeEach(async function () {
-    await rimraf(tmpDir)
-    await mkdirp(path.dirname(tmpDir))
-    await copy('test/fixtures', tmpDir)
-  })
+  setupTmpDir(tmpDir, {from: 'test/fixtures'})
 
   it('should load all tags from a file, outputting ISO-Dates for date properties', async function () {
     expect(await exiftool.load(path.join(tmpDir, 'IMG_20160401_202342.jpg'), {tags: ['Composite:*', 'EXIF:*']})).to.deep.equal({
