@@ -67,5 +67,4 @@ describe('The checkTargetImage function', function () {
       'samePixels': true
     })
   })
-
 })
