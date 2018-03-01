@@ -52,6 +52,7 @@ describe('The runner', function () {
     let files = await listFiles(targetDir)
     files.sort()
     expect(files).to.deep.equal([
+      'tmp/runner/target/2003/04/2003-04-23__15-49-58-canon-powershot-a70.jpg',
       'tmp/runner/target/2003/04/2003-04-23__15-49-58-img_0119.jpg',
       'tmp/runner/target/2003/04/2003-04-23__15-49-58-img_0119.jpg.obsolete',
       'tmp/runner/target/2007/10/2007-10-01__12-00-00-bild137.jpg',
