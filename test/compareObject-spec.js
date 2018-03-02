@@ -7,7 +7,6 @@ const expect = chai.expect
 const compare = require('../lib/compareObject')
 
 describe('The rename strategies', function () {
-
   it('should return empty objects for equal objects', function () {
     expect(compare({a: 1, b: 2}, {a: 1, b: 2})).to.deep.equal([{}, {}])
   })
@@ -23,5 +22,4 @@ describe('The rename strategies', function () {
   it('should return properties that only exist in one object (2)', function () {
     expect(compare({a: 1, b: 2}, {a: 1})).to.deep.equal([{b: 2}, {}])
   })
-
 })
