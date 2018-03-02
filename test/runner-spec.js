@@ -75,24 +75,21 @@ describe('The runner', function () {
         'source': 'tmp/runner/source/img_0119.jpg',
         'target': 'tmp/runner/target/2003/04/2003-04-23__15-49-58-img_0119.jpg',
         'targetFileCheck': {
-          'diff': [
-            {
-              'op': 'remove',
-              'path': [
-                'IPTC:Keywords'
-              ]
-            }
-          ],
           'exists': true,
           'overwrite': true,
-          'samePixels': true
+          'samePixels': true,
+          'sourceTags': {
+            'IPTC:Keywords': 'Ereignisse/Kanada'
+          },
+          'targetTags': {}
         }
       },
       {
         'source': 'tmp/runner/source/2015-08-19_P1010301.JPG',
         'target': 'tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.jpg',
         'targetFileCheck': {
-          'diff': [],
+          'sourceTags': {},
+          'targetTags': {},
           'exists': true,
           'overwrite': true,
           'samePixels': true

@@ -40,7 +40,7 @@ describe('The checkTargetImage function', function () {
     expect(await checkTargetImage(
       'test/fixtures/2015-08-19_P1010301.JPG',
       'test/fixtures/2015_08_19_198.JPG'
-    )).to.deep.equal({exists: true, diff: [], samePixels: true, overwrite: true})
+    )).to.deep.equal({exists: true, 'sourceTags': {}, 'targetTags': {}, samePixels: true, overwrite: true})
   })
 
   it('should include the FileModifyDate in the relevant tags, if no other creation date can be found', async function () {
@@ -49,19 +49,17 @@ describe('The checkTargetImage function', function () {
     let tmpFile = path.resolve(tmpDir, 'Bild137-a.jpg')
     await copy(original, tmpFile)
     fs.utimesSync(tmpFile, new Date('2020-08-08T08:08:08Z'), new Date('2020-08-08T08:08:08Z'))
+
     expect(await checkTargetImage(
       original,
       tmpFile
     )).to.deep.equal({
-      'diff': [
-        {
-          'op': 'replace',
-          'path': [
-            'File:FileModifyDate'
-          ],
-          'value': '2020-08-08T10:08:08+0200'
-        }
-      ],
+      'sourceTags': {
+        'File:FileModifyDate': '2010-06-01T20:15:14+0200'
+      },
+      'targetTags': {
+        'File:FileModifyDate': '2020-08-08T10:08:08+0200'
+      },
       'exists': true,
       'overwrite': false,
       'samePixels': true
