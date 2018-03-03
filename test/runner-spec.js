@@ -33,6 +33,11 @@ describe('The runner', function () {
       new Date(),
       new Date('2016-10-07T15:15:15Z')
     )
+    fs.utimesSync(
+      path.resolve(sourceDir, '00000.MTS'),
+      new Date(),
+      new Date('2015-02-15T12:03:58')
+    )
   })
 
   it('should put images and videos into a month-based dir-structure', async function () {
@@ -137,6 +142,7 @@ async function verifyTargetFiles () {
     'tmp/runner/target/2007/10/2007-10-01__12-00-00-bild137.jpg',
     'tmp/runner/target/2008/09/2008-09-08__03-24-35-p9080161.jpg',
     'tmp/runner/target/2008/09/2008-09-08__04-14-53-p9080175.avi',
+    'tmp/runner/target/2015/02/2015-02-15__12-03-58-00000.mts',
     'tmp/runner/target/2015/08/2015-08-19__11-39-04-003.jpg',
     'tmp/runner/target/2015/08/2015-08-19__11-39-04-198.jpg',
     'tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.jpg',

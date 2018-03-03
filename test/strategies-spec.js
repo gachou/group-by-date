@@ -13,9 +13,11 @@ describe('The rename strategies', function () {
    * @type {fs.Stats}
    */
   let bild137Stats = fs.statSync('test/fixtures/sorted/2007/10/01/Bild137.jpg')
+  let stats00000mts = fs.statSync('test/fixtures/00000.MTS')
 
   afterEach(function () {
     fs.utimesSync('test/fixtures/sorted/2007/10/01/Bild137.jpg', bild137Stats.atime, bild137Stats.mtime)
+    fs.utimesSync('test/fixtures/00000.MTS', stats00000mts.atime, stats00000mts.mtime)
     require('../lib/exiftool').clearCache()
   })
 
@@ -105,6 +107,13 @@ describe('The rename strategies', function () {
     require('../lib/exiftool').clearCache()
     expect(await renamer(file('test/fixtures/sorted/2007/10/01/Bild137.jpg')))
       .to.equal('2007/10/2007-10-01__08-00-00-bild137.jpg')
+  })
+
+  it('should rename 00000.MTS to an exact time based on the file modification date', async function () {
+    fs.utimesSync('test/fixtures/00000.MTS', new Date('2015-02-15T12:03:58'), new Date('2015-02-15T12:03:58'))
+    require('../lib/exiftool').clearCache()
+    expect(await renamer(file('test/fixtures/00000.MTS')))
+      .to.equal('2015/02/2015-02-15__12-03-58-00000.mts')
   })
 })
 
