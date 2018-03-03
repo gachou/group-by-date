@@ -22,6 +22,7 @@
     "exiftool-vendored": "^4.17.0",
     "fast-exif": "^1.0.1",
     "just-diff": "^2.1.1",
+    "lodash.escape": "^4.0.1",
     "looks-same": "^3.3.0",
     "map-stream-limit": "^1.1.0",
     "mem": "^3.0.0",
