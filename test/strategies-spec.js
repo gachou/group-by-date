@@ -28,12 +28,12 @@ describe('The rename strategies', function () {
 
   it('should rename images like IMG_yyyymmdd_hhmmyy.jpg', async function () {
     expect(await renamer(file('test/fixtures/IMG_20160401_202342.jpg')))
-      .to.equal('2016/04/2016-04-01__20-23-43-gt-i8190.jpg')
+      .to.equal('2016/04/2016-04-01__20-23-42-gt-i8190.jpg')
   })
 
   it('should rename images like IMG_yyyymmdd_hhmmyy_1.jpg', async function () {
     expect(await renamer(file('test/fixtures/IMG_20160401_202342_1.jpg')))
-      .to.equal('2016/04/2016-04-01__20-23-43-gt-i8190-1.jpg')
+      .to.equal('2016/04/2016-04-01__20-23-42-gt-i8190-1.jpg')
   })
 
   it('should rename images like yyyy-mm-dd-abc.jpg', async function () {

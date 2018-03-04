@@ -1,11 +1,11 @@
 /* eslint-env mocha */
 
-const chai = require('chai')
-const expect = chai.expect
+// const chai = require('chai')
+// const expect = chai.expect
 // chai.use(require('dirty-chai'))
 
 const path = require('path')
-const fs = require('fs')
+// const fs = require('fs')
 const {setupTmpDir} = require('./lib/tmpDir')
 const tmpDir = 'tmp/reporter'
 

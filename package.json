@@ -11,7 +11,7 @@
     "test": "npm run lint && mocha",
     "lint": "eslint --fix .",
     "build": "mkdir -p target && nexe lib/main.js -o target/group-by-date",
-    "run": "bin/group-by-date.js /media/shares/fotos-und-videos/alles/ /media/shares/fotos-und-videos/bydate/"
+    "run": "bin/group-by-date.js /media/shares/fotos-und-videos/alles/ /media/shares/fotos-und-videos/sortiert-nach-datum/"
   },
   "author": "",
   "license": "ISC",

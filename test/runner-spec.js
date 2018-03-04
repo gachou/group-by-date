@@ -149,16 +149,15 @@ async function verifyTargetFiles () {
     'tmp/runner/target/2015/08/2015-08-19__11-39-04-p1010301.jpg.obsolete',
     'tmp/runner/target/2015/08/2015-08-19__11-39-04-p2.jpg',
     'tmp/runner/target/2015/08/2015-08-19__11-39-04-p8020152.jpg',
-    'tmp/runner/target/2016/04/2016-04-01__20-23-43-gt-i8190-1.jpg',
-    'tmp/runner/target/2016/04/2016-04-01__20-23-43-gt-i8190.jpg',
+    'tmp/runner/target/2016/04/2016-04-01__20-23-42-gt-i8190-1.jpg',
+    'tmp/runner/target/2016/04/2016-04-01__20-23-42-gt-i8190.jpg',
     'tmp/runner/target/2016/08/2016-08-02__11-00-53-p1050073.jpg',
     'tmp/runner/target/2016/10/2016-10-07__17-15-15-0088-some_name-jq3e6311.jpg',
     'tmp/runner/target/2017/07/2017-07-27__12-28-35-some-video.mp4',
-    'tmp/runner/target/2017/07/2017-07-27__14-28-29-vid.mp4'
+    'tmp/runner/target/2017/07/2017-07-27__14-28-29-wx.mp4'
   ])
 
   // The file "img_0119.jpg" should have been copied
   expect(await hasha.fromFile(path.resolve(targetDir, '2003/04/2003-04-23__15-49-58-img_0119.jpg')))
     .to.deep.equal(await hasha.fromFile('test/fixtures/img_0119.jpg'))
-
 }

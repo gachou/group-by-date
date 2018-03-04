@@ -23,7 +23,7 @@ describe('The checkTargetImage function', function () {
     expect(await checkTargetImage(
       'test/fixtures/2015-08-19_P1010301.JPG',
       'non-existing-file.jpg'
-    )).to.deep.equal({exists: false})
+    )).to.deep.equal({exists: false, choice: 'source'})
   })
 
   it('should show a list of tag-differences if there are any. Should whould if the image data is equal', async function () {
@@ -40,7 +40,7 @@ describe('The checkTargetImage function', function () {
     expect(await checkTargetImage(
       'test/fixtures/2015-08-19_P1010301.JPG',
       'test/fixtures/2015_08_19_198.JPG'
-    )).to.deep.equal({exists: true, 'sourceTags': {}, 'targetTags': {}, samePixels: true, overwrite: true})
+    )).to.deep.equal({exists: true, 'sourceTags': {}, 'targetTags': {}, samePixels: true, choice: 'source'})
   })
 
   it('should include the FileModifyDate in the relevant tags, if no other creation date can be found', async function () {
@@ -61,7 +61,7 @@ describe('The checkTargetImage function', function () {
         'File:FileModifyDate': '2020-08-08T10:08:08+0200'
       },
       'exists': true,
-      'overwrite': false,
+      'choice': 'undecided',
       'samePixels': true
     })
   })
